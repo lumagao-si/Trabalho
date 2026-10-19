@@ -1,0 +1,131 @@
+#Criação dos arquivos que irão armazenar os dados para montar o currículo
+nome = open("nome.txt", "w")
+telefone = open("telefone.txt", "w")
+email = open("email.txt", "w")
+sobre = open("sobre.txt", "w")
+experiencia = open("experiencia.txt", "w")
+formacao = open("formacao.txt", "w")
+habilidade = open("habilidade.txt", "w")
+idioma = open("idioma.txt", "w")
+
+#Coleta os dados e armazena nos arquivos
+#Seção 1 (Infos pessoais)
+def info_pessoais():
+    name = input("Digite seu nome completo: ")
+    tel = input("Digite seu telefone: ")
+    mail = input("Digite seu email: ")
+    about = input("Fale brevemente sobre você: ")
+    #Insere os dados nos arquivos correspondentes
+    nome.write(name  + "\n")
+    telefone.write(tel + "\n")
+    email.write(mail  + "\n")
+    sobre.write(about + "\n")
+
+#Seção 2 (Infos profissionais)
+def info_profissionais():
+    exp = input("Fale sobre a sua experiência profissional: ")
+    form = input("Fale sobre sua formação: ")
+    hab = input("Fale sobre suas habilidades: ")
+    #Insere os dados nos arquivos correspondentes
+    experiencia.write(exp  + "\n")
+    formacao.write(form + "\n")
+    habilidade.write(hab + "\n")
+
+#Seção 3 (Idiomas)
+def idiomas():
+    resposta = "Sim"
+    while resposta == "Sim":
+        lang = input("Quais idiomas você tem domínio?: ")
+        #Insere os dados no arquivo correspondente
+        idioma.write(lang  + "\n")
+        resposta = input("Deseja inserir outro idioma?")
+
+#Chamada das funções
+info_pessoais()
+info_profissionais()
+idiomas()
+
+nome.close()
+telefone.close()
+email.close()
+sobre.close()
+experiencia.close()
+formacao.close()
+habilidade.close()
+idioma.close()
+
+#Leitura dos dados inseridos
+nome = open("nome.txt", "r")
+telefone = open("telefone.txt", "r")
+email = open("email.txt", "r")
+sobre = open("sobre.txt", "r")
+experiencia = open("experiencia.txt", "r")
+formacao = open("formacao.txt", "r")
+habilidade = open("habilidade.txt", "r")
+idioma = open("idioma.txt", "r")
+
+curriculo = open("curriculo.html", "w")
+
+def montar_curriculo():
+    curriculo.write("<html>")
+    curriculo.write("<head>")
+    curriculo.write("<style>")
+    curriculo.write("body { font-family: Georgia; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0; }")
+    curriculo.write(".curriculo { width: 794px; height: 100%; background-color: #fdfbd4; padding: 60px 40px 40px 40px }")
+    curriculo.write(".cabecalho { display: flex; justify-content: space-between; }")
+    curriculo.write(".infos_pessoais { display: flex; justify-content: center; flex-direction: column; }")
+    curriculo.write("h1 , h2 { color: #054f77; }")
+    curriculo.write("h1 { font-size: 28px; }")
+    curriculo.write("h2 { font-size: 20px; }")
+    curriculo.write("img { width: 200px; height: 230px; }")
+    curriculo.write("p { font-size: 16px; }")
+    curriculo.write("</style>")
+    curriculo.write("</head>")
+    curriculo.write("<body>")
+    curriculo.write("<div class = 'curriculo'>")
+    curriculo.write("<div class= 'cabecalho'>")
+    curriculo.write("<div class = 'infos_pessoais'>")
+    curriculo.write("<h1>" + nome.read() + "</h1>")
+    curriculo.write("<h2>" + "Telefone" + "</h2>")
+    curriculo.write("<p>" + telefone.read() + "</p>")
+    curriculo.write("<h2>" + "E-mail" + "</h2>")
+    curriculo.write("<p>" + email.read() + "</p>")
+    curriculo.write("<h2>" + "Sobre" + "</h2>")
+    curriculo.write("<p>" + sobre.read() + "</p>")
+    curriculo.write("</div>")
+    curriculo.write("<div class= 'foto'>")
+    curriculo.write("<img class = 'foto' src = 'https://i.pinimg.com/1200x/d4/41/16/d441164fcadaa52ceab7924f49a3faeb.jpg' >")
+    curriculo.write("</div>")
+    curriculo.write("</div>")
+    curriculo.write("<div class = 'infos_gerais'>")
+    curriculo.write("<h2>" + "Experiência profissional" + "</h2>")
+    curriculo.write("<p>" + experiencia.read() + "</p>")
+    curriculo.write("<h2>" + "Formação" + "</h2>")
+    curriculo.write("<p>" + formacao.read() + "</p>")
+    curriculo.write("<h2>" + "Habilidades" + "</h2>")
+    curriculo.write("<p>" + habilidade.read() + "</p>")
+    curriculo.write("<h2>" + "Idiomas" + "</h2>")
+    curriculo.write("<p>" + idioma.read().replace('\n', '<br>') + "</p>")
+    curriculo.write("</div>")
+    curriculo.write("</div>")
+    curriculo.write("</div>")
+    curriculo.write("</body>")
+    curriculo.write("</html>")
+    
+montar_curriculo()
+curriculo.close()
+
+#Leitura do curriculo armazenado no arquivo
+curriculo = open("curriculo.html", "r")
+infos = curriculo.read()
+print(infos)
+curriculo.close()
+
+nome.close()
+telefone.close()
+email.close()
+sobre.close()
+experiencia.close()
+formacao.close()
+habilidade.close()
+idioma.close()
